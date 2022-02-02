@@ -1,0 +1,13 @@
+properties:
+  code:
+    description: code
+    example: 500
+    type: integer
+  status:
+    description: status
+    example: error
+    type: string
+  message:
+    description: error message
+    example: Internal server error
+    type: string

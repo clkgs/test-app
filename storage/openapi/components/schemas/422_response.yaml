@@ -1,0 +1,16 @@
+properties:
+  message:
+    description: error message
+    example: The given data was invalid.
+    type: string
+  errors:
+    description: Errors
+    type: array
+    items:
+      properties:
+        page:
+          description: Errors for page field
+          type: array
+          items:
+            type: string
+            example: The page must be at least 1.

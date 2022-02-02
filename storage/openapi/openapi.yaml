@@ -1,0 +1,17 @@
+openapi: 3.0.3
+
+info:
+  description: API
+  title: API
+  version: "1.0"
+
+servers:
+  - url: /api
+
+paths:
+  '/v1/articles':
+    '$ref': './paths/v1/articles/list.yaml'
+  '/v1/categories':
+    '$ref': './paths/v1/categories/list.yaml'
+
+

@@ -1,0 +1,79 @@
+description: Categories list
+type: array
+items:
+  properties:
+    data:
+      type: array
+      items:
+        properties:
+          id:
+            description: Category id
+            type: string
+            example: 1856b73c-1528-45a3-9d8c-e1baa5e8d128
+          name:
+            description: Category name
+            type: string
+            example: cryptocurrency
+    current_page:
+      description: Pagination current page
+      type: integer
+      example: 1
+    first_page_url:
+      description: Pagination first page url
+      type: string
+      example: http://localhost/api/v1/categories?page=1
+    from:
+      description: Pagination from
+      type: integer
+      example: 1
+    last_page:
+      description: Pagination last page
+      type: integer
+      example: 2
+    last_page_url:
+      description: Pagination last page url
+      type: string
+      example: http://localhost/api/v1/categories?page=2
+    links:
+      description: Pagination links
+      type: array
+      items:
+        type: array
+        items:
+          properties:
+            url:
+              description: Pagination link url
+              type: string
+              example: http://localhost/api/v1/categories?page=1
+            label:
+              description: Pagination link label
+              type: string
+              example: 1
+            active:
+              description: Pagination link active
+              type: boolean
+              example: true
+    next_page_url:
+      description: Pagination next page url
+      type: string
+      example: http://localhost/api/v1/categories?page=2
+    path:
+      description: Pagination page path
+      type: string
+      example: http://localhost/api/v1/categories
+    per_page:
+      description: Pagination per page
+      type: integer
+      example: 20
+    prev_page_url:
+      description: Pagination previous page url
+      type: string
+      example: null
+    to:
+      description: Pagination to
+      type: integer
+      example: 20
+    total:
+      description: Pagination total
+      type: integer
+      example: 22

@@ -1,0 +1,173 @@
+description: Articles list
+type: array
+items:
+  properties:
+    data:
+      type: array
+      items:
+        properties:
+          id:
+            description: Article id
+            type: string
+            example: 67eb562a-05ba-5d30-8d44-bc08efc65e79
+          title:
+            description: Article title
+            type: string
+            example: Millennials would rather cop Bitcoin than Disney and Netflix stocks
+          subtitle:
+            description: Article subtitle
+            type: string
+            example: Boomers don't care for any of these
+          slug:
+            description: Article slug
+            type: string
+            example: millennials-prefer-bitcoin-over-disney-netflix-stocks-boomers-hate-it-all
+          categories:
+            description: Article categories
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  description: Category id
+                  type: string
+                  example: 1856b73c-1528-45a3-9d8c-e1baa5e8d128
+                name:
+                  description: Category name
+                  type: string
+                  example: cryptocurrency
+                pivot:
+                  description: Pivot table
+                  type: object
+                  properties:
+                    article_id:
+                      description: Article id
+                      type: string
+                      example: 67eb562a-05ba-5d30-8d44-bc08efc65e79
+                    category_id:
+                      description: Category id
+                      type: string
+                      example: 2418079f-9ec1-4bfc-9331-290b35b0c54e
+                    is_primary:
+                      description: Is primary category
+                      type: boolean
+                      example: false
+          contents:
+            description: Article contents
+            type: array
+            items:
+              type: object
+              properties:
+                article_id:
+                  description: Article id
+                  type: string
+                  example: 67eb562a-05ba-5d30-8d44-bc08efc65e79
+                content:
+                  description: Content
+                  type: string
+                  example: <p>According to a recently published report...</p>
+          medias:
+            description: Article medias
+            type: array
+            items:
+              type: object
+              properties:
+                article_id:
+                  description: Article id
+                  type: string
+                  example: 67eb562a-05ba-5d30-8d44-bc08efc65e79
+                slug:
+                  description: Media slug
+                  type: string
+                  example: bitcoin-investment-netflix-disney-charles-schwab-blockchain-cryptocurrency
+                attributes:
+                  description: Media attributes
+                  type: object
+                  properties:
+                    url:
+                      description: Url
+                      type: string
+                      example: "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2019/12/bitcoin-investment-netflix-disney-charles-schwab-blockchain-cryptocurrency.png"
+                    width:
+                      description: Width
+                      type: integer
+                      example: 1600
+                    height:
+                      description: Height
+                      type: integer
+                      example: 900
+                    credit:
+                      description: Credit
+                      type: string
+                      example: ""
+                    caption:
+                      description: Caption
+                      type: string
+                      example: ""
+                    copyright:
+                      description: copyright
+                      type: string
+                      example: ""
+    current_page:
+      description: Pagination current page
+      type: integer
+      example: 1
+    first_page_url:
+      description: Pagination first page url
+      type: string
+      example: http://localhost/api/v1/articles?page=1
+    from:
+      description: Pagination from
+      type: integer
+      example: 1
+    last_page:
+      description: Pagination last page
+      type: integer
+      example: 2
+    last_page_url:
+      description: Pagination last page url
+      type: string
+      example: http://localhost/api/v1/articles?page=2
+    links:
+      description: Pagination links
+      type: array
+      items:
+        type: array
+        items:
+          properties:
+            url:
+              description: Pagination link url
+              type: string
+              example: http://localhost/api/v1/articles?page=1
+            label:
+              description: Pagination link label
+              type: string
+              example: 1
+            active:
+              description: Pagination link active
+              type: boolean
+              example: true
+    next_page_url:
+      description: Pagination next page url
+      type: string
+      example: http://localhost/api/v1/articles?page=2
+    path:
+      description: Pagination page path
+      type: string
+      example: http://localhost/api/v1/articles
+    per_page:
+      description: Pagination per page
+      type: integer
+      example: 20
+    prev_page_url:
+      description: Pagination previous page url
+      type: string
+      example: null
+    to:
+      description: Pagination to
+      type: integer
+      example: 20
+    total:
+      description: Pagination total
+      type: integer
+      example: 22

@@ -1,0 +1,12 @@
+type: object
+name: v1_articles_list_request
+properties:
+  category_id:
+    type: string
+    format: uuid
+    description: Category id
+    example: 1856b73c-1528-45a3-9d8c-e1baa5e8d128
+  search:
+    type: string
+    description: Search query
+    example: ""

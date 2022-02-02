@@ -1,0 +1,27 @@
+get:
+  description: Get categories list
+  summary: Get categories list
+  operationId: v1CategoriesList
+  tags:
+    - V1 Categories
+  parameters:
+    - $ref: '../../../components/schemas/parameters/page.yaml'
+    - $ref: '../../../components/schemas/parameters/perPage.yaml'
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/responses/v1_categories_list_response.yaml'
+      description: Success response
+    422:
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/422_response.yaml'
+    500:
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/500_response.yaml'
+      description: Internal server error

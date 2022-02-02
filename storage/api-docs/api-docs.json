@@ -1,0 +1,549 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "description" : "API",
+    "title" : "API",
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "url" : "/api"
+  } ],
+  "paths" : {
+    "/v1/articles" : {
+      "post" : {
+        "description" : "Get articles list",
+        "operationId" : "v1ArticlesList",
+        "parameters" : [ {
+          "description" : "Current page",
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "example" : 1,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Items per page",
+          "in" : "query",
+          "name" : "perPage",
+          "required" : false,
+          "schema" : {
+            "example" : 20,
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/v1_articles_list_request"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/v1_articles_list_response"
+                }
+              }
+            },
+            "description" : "Success response"
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/422_response"
+                }
+              }
+            },
+            "description" : "Validation error"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/500_response"
+                }
+              }
+            },
+            "description" : "Internal server error"
+          }
+        },
+        "summary" : "Get articles list",
+        "tags" : [ "V1 Articles" ]
+      }
+    },
+    "/v1/categories" : {
+      "get" : {
+        "description" : "Get categories list",
+        "operationId" : "v1CategoriesList",
+        "parameters" : [ {
+          "description" : "Current page",
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "example" : 1,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Items per page",
+          "in" : "query",
+          "name" : "perPage",
+          "required" : false,
+          "schema" : {
+            "example" : 20,
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/v1_categories_list_response"
+                }
+              }
+            },
+            "description" : "Success response"
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/422_response"
+                }
+              }
+            }
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/500_response"
+                }
+              }
+            },
+            "description" : "Internal server error"
+          }
+        },
+        "summary" : "Get categories list",
+        "tags" : [ "V1 Categories" ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "v1_articles_list_request" : {
+        "properties" : {
+          "category_id" : {
+            "description" : "Category id",
+            "example" : "1856b73c-1528-45a3-9d8c-e1baa5e8d128",
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "search" : {
+            "description" : "Search query",
+            "example" : "",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "v1_articles_list_response" : {
+        "description" : "Articles list",
+        "items" : {
+          "properties" : {
+            "data" : {
+              "items" : {
+                "properties" : {
+                  "id" : {
+                    "description" : "Article id",
+                    "example" : "67eb562a-05ba-5d30-8d44-bc08efc65e79",
+                    "type" : "string"
+                  },
+                  "title" : {
+                    "description" : "Article title",
+                    "example" : "Millennials would rather cop Bitcoin than Disney and Netflix stocks",
+                    "type" : "string"
+                  },
+                  "subtitle" : {
+                    "description" : "Article subtitle",
+                    "example" : "Boomers don't care for any of these",
+                    "type" : "string"
+                  },
+                  "slug" : {
+                    "description" : "Article slug",
+                    "example" : "millennials-prefer-bitcoin-over-disney-netflix-stocks-boomers-hate-it-all",
+                    "type" : "string"
+                  },
+                  "categories" : {
+                    "description" : "Article categories",
+                    "items" : {
+                      "properties" : {
+                        "id" : {
+                          "description" : "Category id",
+                          "example" : "1856b73c-1528-45a3-9d8c-e1baa5e8d128",
+                          "type" : "string"
+                        },
+                        "name" : {
+                          "description" : "Category name",
+                          "example" : "cryptocurrency",
+                          "type" : "string"
+                        },
+                        "pivot" : {
+                          "description" : "Pivot table",
+                          "properties" : {
+                            "article_id" : {
+                              "description" : "Article id",
+                              "example" : "67eb562a-05ba-5d30-8d44-bc08efc65e79",
+                              "type" : "string"
+                            },
+                            "category_id" : {
+                              "description" : "Category id",
+                              "example" : "2418079f-9ec1-4bfc-9331-290b35b0c54e",
+                              "type" : "string"
+                            },
+                            "is_primary" : {
+                              "description" : "Is primary category",
+                              "example" : false,
+                              "type" : "boolean"
+                            }
+                          },
+                          "type" : "object"
+                        }
+                      },
+                      "type" : "object"
+                    },
+                    "type" : "array"
+                  },
+                  "contents" : {
+                    "description" : "Article contents",
+                    "items" : {
+                      "properties" : {
+                        "article_id" : {
+                          "description" : "Article id",
+                          "example" : "67eb562a-05ba-5d30-8d44-bc08efc65e79",
+                          "type" : "string"
+                        },
+                        "content" : {
+                          "description" : "Content",
+                          "example" : "<p>According to a recently published report...</p>",
+                          "type" : "string"
+                        }
+                      },
+                      "type" : "object"
+                    },
+                    "type" : "array"
+                  },
+                  "medias" : {
+                    "description" : "Article medias",
+                    "items" : {
+                      "properties" : {
+                        "article_id" : {
+                          "description" : "Article id",
+                          "example" : "67eb562a-05ba-5d30-8d44-bc08efc65e79",
+                          "type" : "string"
+                        },
+                        "slug" : {
+                          "description" : "Media slug",
+                          "example" : "bitcoin-investment-netflix-disney-charles-schwab-blockchain-cryptocurrency",
+                          "type" : "string"
+                        },
+                        "attributes" : {
+                          "description" : "Media attributes",
+                          "properties" : {
+                            "url" : {
+                              "description" : "Url",
+                              "example" : "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2019/12/bitcoin-investment-netflix-disney-charles-schwab-blockchain-cryptocurrency.png",
+                              "type" : "string"
+                            },
+                            "width" : {
+                              "description" : "Width",
+                              "example" : 1600,
+                              "type" : "integer"
+                            },
+                            "height" : {
+                              "description" : "Height",
+                              "example" : 900,
+                              "type" : "integer"
+                            },
+                            "credit" : {
+                              "description" : "Credit",
+                              "example" : "",
+                              "type" : "string"
+                            },
+                            "caption" : {
+                              "description" : "Caption",
+                              "example" : "",
+                              "type" : "string"
+                            },
+                            "copyright" : {
+                              "description" : "copyright",
+                              "example" : "",
+                              "type" : "string"
+                            }
+                          },
+                          "type" : "object"
+                        }
+                      },
+                      "type" : "object"
+                    },
+                    "type" : "array"
+                  }
+                },
+                "type" : "object"
+              },
+              "type" : "array"
+            },
+            "current_page" : {
+              "description" : "Pagination current page",
+              "example" : 1,
+              "type" : "integer"
+            },
+            "first_page_url" : {
+              "description" : "Pagination first page url",
+              "example" : "http://localhost/api/v1/articles?page=1",
+              "type" : "string"
+            },
+            "from" : {
+              "description" : "Pagination from",
+              "example" : 1,
+              "type" : "integer"
+            },
+            "last_page" : {
+              "description" : "Pagination last page",
+              "example" : 2,
+              "type" : "integer"
+            },
+            "last_page_url" : {
+              "description" : "Pagination last page url",
+              "example" : "http://localhost/api/v1/articles?page=2",
+              "type" : "string"
+            },
+            "links" : {
+              "description" : "Pagination links",
+              "items" : {
+                "items" : {
+                  "properties" : {
+                    "url" : {
+                      "description" : "Pagination link url",
+                      "example" : "http://localhost/api/v1/articles?page=1",
+                      "type" : "string"
+                    },
+                    "label" : {
+                      "description" : "Pagination link label",
+                      "example" : "1",
+                      "type" : "string"
+                    },
+                    "active" : {
+                      "description" : "Pagination link active",
+                      "example" : true,
+                      "type" : "boolean"
+                    }
+                  },
+                  "type" : "object"
+                },
+                "type" : "array"
+              },
+              "type" : "array"
+            },
+            "next_page_url" : {
+              "description" : "Pagination next page url",
+              "example" : "http://localhost/api/v1/articles?page=2",
+              "type" : "string"
+            },
+            "path" : {
+              "description" : "Pagination page path",
+              "example" : "http://localhost/api/v1/articles",
+              "type" : "string"
+            },
+            "per_page" : {
+              "description" : "Pagination per page",
+              "example" : 20,
+              "type" : "integer"
+            },
+            "prev_page_url" : {
+              "description" : "Pagination previous page url",
+              "type" : "string"
+            },
+            "to" : {
+              "description" : "Pagination to",
+              "example" : 20,
+              "type" : "integer"
+            },
+            "total" : {
+              "description" : "Pagination total",
+              "example" : 22,
+              "type" : "integer"
+            }
+          },
+          "type" : "object"
+        },
+        "type" : "array"
+      },
+      "422_response" : {
+        "properties" : {
+          "message" : {
+            "description" : "error message",
+            "example" : "The given data was invalid.",
+            "type" : "string"
+          },
+          "errors" : {
+            "description" : "Errors",
+            "items" : {
+              "$ref" : "#/components/schemas/_422_response_errors"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "500_response" : {
+        "properties" : {
+          "code" : {
+            "description" : "code",
+            "example" : 500,
+            "type" : "integer"
+          },
+          "status" : {
+            "description" : "status",
+            "example" : "error",
+            "type" : "string"
+          },
+          "message" : {
+            "description" : "error message",
+            "example" : "Internal server error",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "v1_categories_list_response" : {
+        "description" : "Categories list",
+        "items" : {
+          "properties" : {
+            "data" : {
+              "items" : {
+                "properties" : {
+                  "id" : {
+                    "description" : "Category id",
+                    "example" : "1856b73c-1528-45a3-9d8c-e1baa5e8d128",
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "description" : "Category name",
+                    "example" : "cryptocurrency",
+                    "type" : "string"
+                  }
+                },
+                "type" : "object"
+              },
+              "type" : "array"
+            },
+            "current_page" : {
+              "description" : "Pagination current page",
+              "example" : 1,
+              "type" : "integer"
+            },
+            "first_page_url" : {
+              "description" : "Pagination first page url",
+              "example" : "http://localhost/api/v1/categories?page=1",
+              "type" : "string"
+            },
+            "from" : {
+              "description" : "Pagination from",
+              "example" : 1,
+              "type" : "integer"
+            },
+            "last_page" : {
+              "description" : "Pagination last page",
+              "example" : 2,
+              "type" : "integer"
+            },
+            "last_page_url" : {
+              "description" : "Pagination last page url",
+              "example" : "http://localhost/api/v1/categories?page=2",
+              "type" : "string"
+            },
+            "links" : {
+              "description" : "Pagination links",
+              "items" : {
+                "items" : {
+                  "properties" : {
+                    "url" : {
+                      "description" : "Pagination link url",
+                      "example" : "http://localhost/api/v1/categories?page=1",
+                      "type" : "string"
+                    },
+                    "label" : {
+                      "description" : "Pagination link label",
+                      "example" : "1",
+                      "type" : "string"
+                    },
+                    "active" : {
+                      "description" : "Pagination link active",
+                      "example" : true,
+                      "type" : "boolean"
+                    }
+                  },
+                  "type" : "object"
+                },
+                "type" : "array"
+              },
+              "type" : "array"
+            },
+            "next_page_url" : {
+              "description" : "Pagination next page url",
+              "example" : "http://localhost/api/v1/categories?page=2",
+              "type" : "string"
+            },
+            "path" : {
+              "description" : "Pagination page path",
+              "example" : "http://localhost/api/v1/categories",
+              "type" : "string"
+            },
+            "per_page" : {
+              "description" : "Pagination per page",
+              "example" : 20,
+              "type" : "integer"
+            },
+            "prev_page_url" : {
+              "description" : "Pagination previous page url",
+              "type" : "string"
+            },
+            "to" : {
+              "description" : "Pagination to",
+              "example" : 20,
+              "type" : "integer"
+            },
+            "total" : {
+              "description" : "Pagination total",
+              "example" : 22,
+              "type" : "integer"
+            }
+          },
+          "type" : "object"
+        },
+        "type" : "array"
+      },
+      "_422_response_errors" : {
+        "properties" : {
+          "page" : {
+            "description" : "Errors for page field",
+            "items" : {
+              "example" : "The page must be at least 1.",
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      }
+    }
+  }
+}

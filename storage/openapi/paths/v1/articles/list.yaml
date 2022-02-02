@@ -1,0 +1,33 @@
+post:
+  description: Get articles list
+  summary: Get articles list
+  operationId: v1ArticlesList
+  tags:
+    - V1 Articles
+  parameters:
+    - $ref: '../../../components/schemas/parameters/page.yaml'
+    - $ref: '../../../components/schemas/parameters/perPage.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../../components/schemas/requests/v1_articles_list_request.yaml'
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/responses/v1_articles_list_response.yaml'
+      description: Success response
+    422:
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/422_response.yaml'
+      description: Validation error
+    500:
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/500_response.yaml'
+      description: Internal server error

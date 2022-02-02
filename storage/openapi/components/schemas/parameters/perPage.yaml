@@ -1,0 +1,7 @@
+name: perPage
+in: query
+description: Items per page
+required: false
+schema:
+  type: integer
+  example: 20
