@@ -27,7 +27,9 @@ class Article extends Model
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)
+            ->using(ArticleCategory::class)
+            ->withPivot('is_primary');
     }
 
     public function medias(): HasMany
@@ -37,17 +39,20 @@ class Article extends Model
 
     public function authors(): BelongsToMany
     {
-        return $this->belongsToMany(Author::class);
+        return $this->belongsToMany(Author::class)
+            ->using(ArticleAuthor::class);
     }
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)
+            ->using(ArticleTag::class);
     }
 
     public function socials(): BelongsToMany
     {
-        return $this->belongsToMany(Social::class);
+        return $this->belongsToMany(Social::class)
+            ->using(ArticleSocial::class);
     }
 
     public function contents(): HasMany
