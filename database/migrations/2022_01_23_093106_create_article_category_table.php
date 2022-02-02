@@ -15,10 +15,11 @@ class CreateArticleCategoryTable extends Migration
     {
         Schema::create('article_category', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('article_id');
-            $table->uuid('category_id');
+            $table->foreignUuid('article_id')->constrained();
+            $table->foreignUuid('category_id')->constrained();
             $table->boolean('is_primary');
 
+            $table->unique(['category_id', 'article_id']);
             $table->timestamps();
         });
     }

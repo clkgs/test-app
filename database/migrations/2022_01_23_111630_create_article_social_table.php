@@ -18,7 +18,7 @@ class CreateArticleSocialTable extends Migration
             $table->uuid('article_id');
             $table->uuid('social_id');
             $table->unsignedInteger('shares');
-            $table->string('link', 255);
+            $table->string('link', 250);
 
             $table->timestamps();
         });

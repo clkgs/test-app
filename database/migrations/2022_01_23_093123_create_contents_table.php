@@ -15,8 +15,8 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->text('content');
-            $table->uuid('article_id');
+            $table->text('content')->fulltext();
+            $table->foreignUuid('article_id')->constrained();
             $table->enum('type', ['html']);
             $table->json('attributes');
 

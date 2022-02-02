@@ -15,7 +15,7 @@ class CreateSocialsTable extends Migration
     {
         Schema::create('socials', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name', 50);
+            $table->string('name', 50)->unique();
 
             $table->timestamps();
         });

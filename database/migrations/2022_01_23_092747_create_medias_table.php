@@ -15,9 +15,9 @@ class CreateMediasTable extends Migration
     {
         Schema::create('medias', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('article_id');
+            $table->foreignUuid('article_id')->constrained();
             $table->enum('source', ['archive']);
-            $table->string('slug', 255);
+            $table->string('slug', 250);
             $table->enum('type', ['image']);
             $table->json('attributes');
             $table->timestamp('published');

@@ -17,7 +17,7 @@ class CreateTagsTable extends Migration
             $table->uuid('id')->primary();
             $table->enum('type', ['wordlift', 'section', 'topic', 'company', 'profile', 'event']);
             $table->string('name', 50);
-            $table->string('slug', 50);
+            $table->string('slug', 50)->unique();
 
             $table->timestamps();
         });

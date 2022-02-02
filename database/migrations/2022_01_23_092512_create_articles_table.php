@@ -16,12 +16,12 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->enum('source', ['archive']);
-            $table->string('title', 255);
-            $table->string('subtitle', 255);
-            $table->string('slug', 255);
+            $table->string('title', 250)->fulltext();
+            $table->string('subtitle', 250);
+            $table->string('slug', 250)->unique();
             $table->enum('format', ['standard']);
-            $table->string('emoji', 255);
-            $table->timestamp('published');
+            $table->string('emoji', 250);
+            $table->timestamp('published')->index();
             $table->timestamp('modified');
             $table->enum('status', ['published']);
 

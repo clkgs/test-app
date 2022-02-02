@@ -15,8 +15,8 @@ class CreateArticleTagTable extends Migration
     {
         Schema::create('article_tag', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('article_id');
-            $table->uuid('tag_id');
+            $table->foreignUuid('article_id')->constrained();
+            $table->foreignUuid('tag_id')->constrained();
 
             $table->timestamps();
         });

@@ -15,8 +15,8 @@ class CreateArticleAuthorTable extends Migration
     {
         Schema::create('article_author', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('article_id');
-            $table->uuid('author_id');
+            $table->foreignUuid('article_id')->constrained();
+            $table->foreignUuid('author_id')->constrained();
 
             $table->timestamps();
         });
