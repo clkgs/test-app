@@ -3,6 +3,7 @@
 namespace App\Http\API\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use JetBrains\PhpStorm\ArrayShape;
 
 /**
  * @property int $page
@@ -15,7 +16,7 @@ class PaginateRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -25,7 +26,7 @@ class PaginateRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'page' => 'integer|min:1',

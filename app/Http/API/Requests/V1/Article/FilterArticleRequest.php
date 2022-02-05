@@ -3,6 +3,7 @@
 namespace App\Http\API\Requests\V1\Article;
 
 use Illuminate\Foundation\Http\FormRequest;
+use JetBrains\PhpStorm\ArrayShape;
 
 /**
  * @property string $categoryId
@@ -17,7 +18,7 @@ class FilterArticleRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -27,7 +28,7 @@ class FilterArticleRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'categoryId' => 'nullable|uuid',

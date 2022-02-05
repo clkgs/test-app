@@ -9,8 +9,17 @@ class Media extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'medias';
+    /**
+     * @var bool
+     */
     public $incrementing = false;
+    /**
+     * @var array<int, string>
+     */
     protected $fillable = [
         'source',
         'slug',
@@ -19,6 +28,9 @@ class Media extends Model
         'published',
         'modified',
     ];
+    /**
+     * @var array<int, string>
+     */
     protected $casts = [
         'attributes' => 'array',
     ];

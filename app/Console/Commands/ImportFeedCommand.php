@@ -33,21 +33,60 @@ class ImportFeedCommand extends Command
      */
     protected $description = 'Import feed.json into database';
 
+    /**
+     * @var string
+     */
     private string $fileName = 'feed.json';
 
+    /**
+     * @var array<int, array>
+     */
     private array $articles = [];
+    /**
+     * @var array<int, array>
+     */
     private array $categories = [];
+    /**
+     * @var array<int, array>
+     */
     private array $authors = [];
+    /**
+     * @var array<int, array>
+     */
     private array $medias = [];
+    /**
+     * @var array<int, array>
+     */
     private array $tags = [];
+    /**
+     * @var array<int, array>
+     */
     private array $socials = [];
+    /**
+     * @var array<int, array>
+     */
     private array $contents = [];
 
+    /**
+     * @var array<int, array>
+     */
     private array $articleTags = [];
+    /**
+     * @var array<int, array>
+     */
     private array $articleCategories = [];
+    /**
+     * @var array<int, array>
+     */
     private array $articleAuthors = [];
+    /**
+     * @var array<int, array>
+     */
     private array $articleSocials = [];
 
+    /**
+     * @var array<int, string>
+     */
     private array $articleFields = [
         'id',
         'source',
@@ -87,6 +126,11 @@ class ImportFeedCommand extends Command
     }
 
     /**
+     * @param array $contents
+     * @param string $articleId
+     *
+     * @return void
+     *
      * @throws \JsonException
      */
     private function parseContents(array $contents, string $articleId): void
@@ -100,6 +144,11 @@ class ImportFeedCommand extends Command
         }
     }
 
+    /**
+     * @param array $categories
+     *
+     * @return array
+     */
     private function parseCategories(array $categories): array
     {
         $ids = [];
@@ -122,7 +171,12 @@ class ImportFeedCommand extends Command
         return $ids;
     }
 
-    private function getCategory($category)
+    /**
+     * @param string $category
+     *
+     * @return string
+     */
+    private function getCategory(string $category): string
     {
         if (!isset($this->categories[$category])) {
             $this->categories[$category] = [
@@ -134,6 +188,11 @@ class ImportFeedCommand extends Command
         return $this->categories[$category]['id'];
     }
 
+    /**
+     * @param array $authors
+     *
+     * @return array
+     */
     private function parseAuthors(array $authors): array
     {
         $ids = [];
@@ -149,7 +208,13 @@ class ImportFeedCommand extends Command
         return $ids;
     }
 
+
     /**
+     * @param array $medias
+     * @param string $articleId
+     *
+     * @return void
+     *
      * @throws \JsonException
      */
     private function parseMedias(array $medias, string $articleId): void
@@ -167,6 +232,11 @@ class ImportFeedCommand extends Command
         }
     }
 
+    /**
+     * @param array $tags
+     *
+     * @return array
+     */
     private function parseTags(array $tags): array
     {
         $ids = [];
@@ -182,6 +252,11 @@ class ImportFeedCommand extends Command
         return $ids;
     }
 
+    /**
+     * @param array $socials
+     *
+     * @return array
+     */
     private function parseSocials(array $socials): array
     {
         $ids = [];
@@ -199,6 +274,11 @@ class ImportFeedCommand extends Command
         return $ids;
     }
 
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
     private function getSocialId(string $name): string
     {
         if (!isset($this->socials[$name])) {
@@ -211,6 +291,13 @@ class ImportFeedCommand extends Command
         return $this->socials[$name]['id'];
     }
 
+    /**
+     * @param array $articles
+     *
+     * @return void
+     *
+     * @throws \JsonException
+     */
     private function parseArticles(array $articles): void
     {
         foreach ($articles as $article) {
@@ -256,6 +343,9 @@ class ImportFeedCommand extends Command
         }
     }
 
+    /**
+     * @return void
+     */
     private function storeData(): void
     {
 

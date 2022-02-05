@@ -11,8 +11,17 @@ class Article extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'articles';
+    /**
+     * @var bool
+     */
     public $incrementing = false;
+    /**
+     * @var array<int, string>
+     */
     protected $fillable = [
         'source',
         'title',
@@ -25,6 +34,9 @@ class Article extends Model
         'status',
     ];
 
+    /**
+     * @return BelongsToMany
+     */
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class)
@@ -32,29 +44,44 @@ class Article extends Model
             ->withPivot('is_primary');
     }
 
+    /**
+     * @return HasMany
+     */
     public function medias(): HasMany
     {
         return $this->hasMany(Media::class);
     }
 
+    /**
+     * @return BelongsToMany
+     */
     public function authors(): BelongsToMany
     {
         return $this->belongsToMany(Author::class)
             ->using(ArticleAuthor::class);
     }
 
+    /**
+     * @return BelongsToMany
+     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class)
             ->using(ArticleTag::class);
     }
 
+    /**
+     * @return BelongsToMany
+     */
     public function socials(): BelongsToMany
     {
         return $this->belongsToMany(Social::class)
             ->using(ArticleSocial::class);
     }
 
+    /**
+     * @return HasMany
+     */
     public function contents(): HasMany
     {
         return $this->hasMany(Content::class);

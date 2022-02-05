@@ -9,5 +9,8 @@ class ArticleTag extends Pivot
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'article_tag';
 }

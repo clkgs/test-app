@@ -9,5 +9,8 @@ class ArticleSocial extends Pivot
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'article_social';
 }

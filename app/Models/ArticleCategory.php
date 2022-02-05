@@ -9,8 +9,14 @@ class ArticleCategory extends Pivot
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'article_category';
 
+    /**
+     * @var array<string, string>
+     */
     protected $casts = [
         'is_primary' => 'bool',
     ];

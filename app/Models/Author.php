@@ -9,8 +9,17 @@ class Author extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'authors';
+    /**
+     * @var bool
+     */
     public $incrementing = false;
+    /**
+     * @var array<int, string>
+     */
     protected $fillable = [
         'name',
         'slug',

@@ -16,7 +16,7 @@ class CategoryController
      *
      * @return array|LengthAwarePaginator
      */
-    public function index(PaginateRequest $paginateRequest, CategoryService $categoryService)
+    public function index(PaginateRequest $paginateRequest, CategoryService $categoryService): LengthAwarePaginator|array
     {
         try {
             return $categoryService->list(

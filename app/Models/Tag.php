@@ -9,8 +9,17 @@ class Tag extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'tags';
+    /**
+     * @var bool
+     */
     public $incrementing = false;
+    /**
+     * @var array<int, string>
+     */
     protected $fillable = [
         'type',
         'name',

@@ -17,7 +17,7 @@ class ArticleController
      *
      * @return array|LengthAwarePaginator
      */
-    public function index(FilterArticleRequest $request, ArticleService $articleService)
+    public function index(FilterArticleRequest $request, ArticleService $articleService): LengthAwarePaginator|array
     {
         try {
             return $articleService->list(
