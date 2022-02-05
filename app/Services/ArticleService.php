@@ -22,13 +22,13 @@ class ArticleService
     {
         $query = Article::query()
             ->select([
-                'id',
-                'title',
-                'subtitle',
-                'slug',
+                'articles.id',
+                'articles.title',
+                'articles.subtitle',
+                'articles.slug',
             ])
             ->with([
-                'categories' => function ($query) {
+                'categories' => function (BelongsToMany $query) {
                     $query->select([
                         'categories.id',
                         'categories.name',
@@ -52,15 +52,15 @@ class ArticleService
             ->latest('published');
 
         if ($categoryId) {
-            $query->whereHas('categories', function ($query) use ($categoryId) {
-                $query->where('category_id', $categoryId);
-            });
+            $query->leftJoin('article_category', 'articles.id', 'article_category.article_id')
+                ->leftJoin('categories', 'article_category.category_id', 'categories.id')
+                ->where('category_id', $categoryId);
         }
 
         if ($search) {
             $query->where(function ($query) use ($search) {
-                $query->whereRaw('MATCH(`title`) AGAINST (?)', [$search])
-                    ->orWhereIn('id', Content::query()
+                $query->whereRaw('MATCH(`articles`.`title`) AGAINST (?)', [$search])
+                    ->orWhereIn('articles.id', Content::query()
                         ->select('article_id')
                         ->whereRaw('MATCH(`content`) AGAINST (?)', [$search]));
             });
